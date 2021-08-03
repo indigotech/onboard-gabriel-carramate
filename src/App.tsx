@@ -5,9 +5,7 @@ function App() {
   const teste = 'teste';
   return (
     <div className='App'>
-      <header className='App-header'>
         <p>{teste}</p>
-      </header>
     </div>
   );
 }
