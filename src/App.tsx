@@ -21,6 +21,7 @@ function App() {
   return (
     <div className='App'>
       <h1>Bem-vindo(a) à Taqtile!</h1>
+<<<<<<< HEAD
       <form onSubmit={handleSubmit(onSubmit)}>
         
         <div>
@@ -38,10 +39,17 @@ function App() {
           />
 
           {errors.email && <p>{errors.email.message}</p>}
+=======
+      <form>
+        <div>
+          <label>Email:</label>
+          <input type='email' name='email' />
+>>>>>>> 7338af1... code cleaning and title change
         </div>
 
         <div>
           <label>Senha:</label>
+<<<<<<< HEAD
 
           <input
             type='password'
@@ -59,6 +67,9 @@ function App() {
           />
 
           {errors.password && <p>{errors.password.message}</p>}
+=======
+          <input type='password' name='password' />
+>>>>>>> 7338af1... code cleaning and title change
         </div>
 
         <div>
