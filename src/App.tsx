@@ -2,10 +2,28 @@ import React from 'react';
 import './App.css';
 
 function App() {
-  const teste = 'teste';
   return (
     <div className='App'>
-        <p>{teste}</p>
+      <div className='Titulo'>Bem-vindo(a) à Taqtile!</div>
+      <form>
+        <div>
+          <label>
+            Email:
+            <input type='email' name='email' />
+          </label>
+        </div>
+        <div>
+          <label>
+            Senha:
+            <input type='password' name='password' />
+          </label>
+        </div>
+        <div>
+          <button>
+            Entrar
+          </button> 
+        </div>
+      </form>  
     </div>
   );
 }
