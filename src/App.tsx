@@ -4,19 +4,15 @@ import './App.css';
 function App() {
   return (
     <div className='App'>
-      <div className='Titulo'>Bem-vindo(a) à Taqtile!</div>
+      <h1>Bem-vindo(a) à Taqtile!</h1>
       <form>
         <div>
-          <label>
-            Email:
-            <input type='email' name='email' />
-          </label>
+          <label>Email:</label>
+          <input type='email' name='email' />
         </div>
         <div>
-          <label>
-            Senha:
-            <input type='password' name='password' />
-          </label>
+          <label>Senha:</label>
+          <input type='password' name='password' />
         </div>
         <div>
           <button>Entrar</button>
