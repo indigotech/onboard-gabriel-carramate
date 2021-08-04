@@ -19,11 +19,9 @@ function App() {
           </label>
         </div>
         <div>
-          <button>
-            Entrar
-          </button> 
+          <button>Entrar</button>
         </div>
-      </form>  
+      </form>
     </div>
   );
 }
