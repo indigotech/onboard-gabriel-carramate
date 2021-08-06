@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, gql } from "@apollo/client";
 
 type FormValues = {
   email: string;
@@ -107,3 +108,28 @@ const handlePasswordValidation = (password: string) => {
     return 'A senha precisa ter no mínimo 1 letra';
   }
 };
+
+const client = new ApolloClient({
+  uri: 'https://tq-template-server-sample.herokuapp.com/graphql',
+  cache: new InMemoryCache()
+});
+
+client
+  .mutate({
+    mutation: gql`
+    mutation login {
+      login(data: {email: "admin@taqtile.com.br", password: "1234qwer"}) {
+        token
+        user {
+          id
+          name
+          phone
+          birthDate
+          email
+          role
+        }
+      }
+    }
+    `
+  })
+  .then(result => console.log(result));
