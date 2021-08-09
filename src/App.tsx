@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, gql } from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, gql, useMutation } from '@apollo/client';
 
 type FormValues = {
   email: string;
@@ -9,6 +9,9 @@ type FormValues = {
 };
 
 function App() {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
   const {
     register,
     handleSubmit,
@@ -17,13 +20,33 @@ function App() {
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(data);
+    client
+      .mutate({
+        mutation: gql`
+          mutation login($email: String!, $password: String!) {
+            login(data: { email: $email, password: $password }) {
+              token
+              user {
+                id
+                name
+                phone
+                birthDate
+                email
+                role
+              }
+            }
+          }
+        `,
+        variables: { email, password },
+      })
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
   };
 
   return (
     <div className='App'>
       <h1>Bem-vindo(a) à Taqtile!</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        
         <div>
           <label>Email:</label>
 
@@ -36,6 +59,7 @@ function App() {
               },
               validate: handleEmailValidation,
             })}
+            onChange={(e) => setEmail(e.target.value)}
           />
 
           {errors.email && <p>{errors.email.message}</p>}
@@ -57,6 +81,7 @@ function App() {
               },
               validate: handlePasswordValidation,
             })}
+            onChange={(e) => setPassword(e.target.value)}
           />
 
           {errors.password && <p>{errors.password.message}</p>}
@@ -111,25 +136,5 @@ const handlePasswordValidation = (password: string) => {
 
 const client = new ApolloClient({
   uri: 'https://tq-template-server-sample.herokuapp.com/graphql',
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
-
-client
-  .mutate({
-    mutation: gql`
-    mutation login {
-      login(data: {email: "admin@taqtile.com.br", password: "1234qwer"}) {
-        token
-        user {
-          id
-          name
-          phone
-          birthDate
-          email
-          role
-        }
-      }
-    }
-    `
-  })
-  .then(result => console.log(result));
