@@ -11,6 +11,7 @@ type FormValues = {
 function App() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [loginError, setLoginError] = React.useState('');
 
   const {
     register,
@@ -18,10 +19,10 @@ function App() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
     console.log(data);
-    client
-      .mutate({
+    try {
+      const result = await client.mutate({
         mutation: gql`
           mutation login($email: String!, $password: String!) {
             login(data: { email: $email, password: $password }) {
@@ -38,9 +39,11 @@ function App() {
           }
         `,
         variables: { email, password },
-      })
-      .then((result) => console.log(result))
-      .catch((error) => console.log(error));
+      });
+      localStorage.setItem('token', result.data.login.token);
+    } catch (errors) {
+      setLoginError(errors.message);
+    }
   };
 
   return (
@@ -86,6 +89,8 @@ function App() {
 
           {errors.password && <p>{errors.password.message}</p>}
         </div>
+
+        <p>{loginError}</p>
 
         <div>
           <button type='submit'>Entrar</button>
