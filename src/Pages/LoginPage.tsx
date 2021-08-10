@@ -10,6 +10,7 @@ type FormValues = {
 
 export function LoginPage() {
   const [loginError, setLoginError] = React.useState<string>();
+  const [loading, setLoading] = React.useState(false);
   const history = useHistory();
 
   const {
@@ -20,6 +21,7 @@ export function LoginPage() {
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     setLoginError(undefined);
+    setLoading(true);
     try {
       const result = await client.mutate({
         mutation: gql`
@@ -43,6 +45,7 @@ export function LoginPage() {
       history.push('/home');
     } catch (errors) {
       setLoginError(errors.message);
+      setLoading(false);
     }
   };
 
@@ -91,8 +94,9 @@ export function LoginPage() {
           {loginError && <p>{loginError}</p>}
 
           <div>
-            <button type='submit'>Entrar</button>
+            <button type='submit' disabled={loading}>{loading ? 'Carregando...' : 'Entrar'}</button>
           </div>
+
         </form>
       </div>
   );
