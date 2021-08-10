@@ -18,7 +18,7 @@ function App() {
   } = useForm();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    setLoginError('');
+    setLoginError(undefined);
     try {
       const result = await client.mutate({
         mutation: gql`
