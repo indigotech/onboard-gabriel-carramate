@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
@@ -45,6 +46,10 @@ function App() {
       setLoginError(errors.message);
     }
   };
+=======
+import { HomePage } from './Pages/HomePage';
+import { LoginPage } from './Pages/LoginPage';
+>>>>>>> bf91aba... create navigation between pages
 =======
 import { HomePage } from './Pages/HomePage';
 import { LoginPage } from './Pages/LoginPage';
