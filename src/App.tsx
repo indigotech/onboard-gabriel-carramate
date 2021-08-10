@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, gql, useMutation } from '@apollo/client';
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 type FormValues = {
   email: string;
@@ -9,9 +9,7 @@ type FormValues = {
 };
 
 function App() {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [loginError, setLoginError] = React.useState('');
+  const [loginError, setLoginError] = React.useState<string>();
 
   const {
     register,
@@ -20,7 +18,7 @@ function App() {
   } = useForm();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    console.log(data);
+    setLoginError('');
     try {
       const result = await client.mutate({
         mutation: gql`
@@ -38,7 +36,7 @@ function App() {
             }
           }
         `,
-        variables: { email, password },
+        variables: { email: data.email, password: data.password },
       });
       localStorage.setItem('token', result.data.login.token);
     } catch (errors) {
@@ -62,7 +60,6 @@ function App() {
               },
               validate: handleEmailValidation,
             })}
-            onChange={(e) => setEmail(e.target.value)}
           />
 
           {errors.email && <p>{errors.email.message}</p>}
@@ -84,13 +81,12 @@ function App() {
               },
               validate: handlePasswordValidation,
             })}
-            onChange={(e) => setPassword(e.target.value)}
           />
 
           {errors.password && <p>{errors.password.message}</p>}
         </div>
 
-        <p>{loginError}</p>
+        {loginError && <p>{loginError}</p>}
 
         <div>
           <button type='submit'>Entrar</button>
