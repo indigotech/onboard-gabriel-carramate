@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 type FormValues = {
   email: string;
@@ -8,21 +9,45 @@ type FormValues = {
 };
 
 function App() {
+  const [loginError, setLoginError] = React.useState<string>();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    setLoginError(undefined);
+    try {
+      const result = await client.mutate({
+        mutation: gql`
+          mutation login($email: String!, $password: String!) {
+            login(data: { email: $email, password: $password }) {
+              token
+              user {
+                id
+                name
+                phone
+                birthDate
+                email
+                role
+              }
+            }
+          }
+        `,
+        variables: { email: data.email, password: data.password },
+      });
+      localStorage.setItem('token', result.data.login.token);
+    } catch (errors) {
+      setLoginError(errors.message);
+    }
   };
 
   return (
     <div className='App'>
       <h1>Bem-vindo(a) à Taqtile!</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        
         <div>
           <label>Email:</label>
 
@@ -60,6 +85,8 @@ function App() {
 
           {errors.password && <p>{errors.password.message}</p>}
         </div>
+
+        {loginError && <p>{loginError}</p>}
 
         <div>
           <button type='submit'>Entrar</button>
@@ -107,3 +134,8 @@ const handlePasswordValidation = (password: string) => {
     return 'A senha precisa ter no mínimo 1 letra';
   }
 };
+
+const client = new ApolloClient({
+  uri: 'https://tq-template-server-sample.herokuapp.com/graphql',
+  cache: new InMemoryCache(),
+});
