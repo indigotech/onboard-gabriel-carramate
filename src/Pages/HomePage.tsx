@@ -20,6 +20,7 @@ const list = [
 
 export function HomePage() {
   return (
+<<<<<<< HEAD
     <div>
       <h3>Lista de usuários</h3>
 
@@ -34,5 +35,15 @@ export function HomePage() {
       </ul>
       
     </div>
+=======
+    <ul>
+      <h3>Lista de usuários</h3>
+    {list.map(item => (
+      <li key={item.id}>
+        <div>name: {item.username} email: {item.useremail}</div>
+      </li>
+    ))}
+  </ul>
+>>>>>>> 5066312... create users list
   );
 }
