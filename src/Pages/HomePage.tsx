@@ -20,13 +20,19 @@ const list = [
 
 export function HomePage() {
   return (
-    <ul>
+    <div>
       <h3>Lista de usuários</h3>
-    {list.map(item => (
-      <li key={item.id}>
-        <div>name: {item.username} email: {item.useremail}</div>
-      </li>
-    ))}
-  </ul>
+
+      <ul>
+        {list.map((item) => (
+          <li key={item.id}>
+            <div>
+              name: {item.username} email: {item.useremail}
+            </div>
+          </li>
+        ))}
+      </ul>
+      
+    </div>
   );
 }
