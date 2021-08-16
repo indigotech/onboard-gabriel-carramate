@@ -1,4 +1,4 @@
-interface user {
+interface User {
   user: {
     id: string;
     name: string;
@@ -17,12 +17,12 @@ export type FormValues = {
 export interface LoginResult {
   login: {
     token: string;
-    user: user;
+    user: User;
   };
 }
 
 export interface UserListResult {
   users: {
-    nodes: user
+    nodes: User
   }
 }
