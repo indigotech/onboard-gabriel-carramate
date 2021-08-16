@@ -1,27 +1,10 @@
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { useHistory } from 'react-router';
+import { LoginResult, FormValues } from '../Utils/interfaces';
+import { LOGIN_MUTATION } from '../Utils/graphql';
 import { handleEmailValidation, handlePasswordValidation } from '../Validations';
-
-type FormValues = {
-  email: string;
-  password: string;
-};
-
-interface LoginResult {
-  login: {
-    token: string;
-    user: {
-      id: string;
-      name: string;
-      phone: string;
-      birthDate: string;
-      email: string;
-      role: string;
-    };
-  };
-}
 
 export function LoginPage() {
   const history = useHistory();
@@ -32,26 +15,10 @@ export function LoginPage() {
     formState: { errors },
   } = useForm();
 
-  const LOGIN_MUTATION = gql`
-    mutation login($email: String!, $password: String!) {
-      login(data: { email: $email, password: $password }) {
-        token
-        user {
-          id
-          name
-          phone
-          birthDate
-          email
-          role
-        }
-      }
-    }
-  `;
-
   const [loginMutation, { loading, error }] = useMutation<LoginResult>(LOGIN_MUTATION, {
     onCompleted(data) {
       localStorage.setItem('token', data.login.token);
-      history.push('/home');
+      history.push('/userslist');
     },
     onError(error) {
       return error;

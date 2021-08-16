@@ -1,12 +1,28 @@
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import { HomePage } from './Pages/HomePage';
+import { UserList } from './Pages/UserList';
 import { LoginPage } from './Pages/LoginPage';
 
-const client = new ApolloClient({
+
+const httpLink = createHttpLink({
   uri: 'https://tq-template-server-sample.herokuapp.com/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? token : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
@@ -18,8 +34,8 @@ export function App() {
           <Route exact path='/'>
             <LoginPage />
           </Route>
-          <Route path='/home'>
-            <HomePage />
+          <Route path='/userslist'>
+            <UserList />
           </Route>
         </Switch>
       </Router>
