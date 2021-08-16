@@ -14,6 +14,16 @@ function validateDate(date: string): boolean {
   return re.test(date)
 }
 
+function validateYear(date: string): boolean {
+  const birthYear = parseInt(date.slice(date.length - 4),10);
+
+  if (birthYear <= 2005) {
+    return true
+  } else {
+    return false
+  }
+}
+
 function hasDigit(password: string): boolean {
   const hasDigits = password.split('').some((c) => {
     const isDigit = !isNaN(Number(c));
@@ -54,6 +64,10 @@ export const handleNameValidation = (name: string) => {
 export const handleDateValidation = (date: string) => {
   if (!validateDate(date)) {
     return 'A data de nascimento precisa ter o formato DD/MM/AAAA.'
+  }
+
+  if(!validateYear(date)) {
+    return 'O ano de nascimento não pode ser posterior a 2005.'
   }
 }
 
