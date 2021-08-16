@@ -3,8 +3,11 @@ import React, { useState } from 'react';
 import { GET_USERS } from '../Utils/graphql';
 import { Pagination } from '../Components/Pagination';
 import { UserListResult } from '../Utils/interfaces';
+import { Fab } from '@material-ui/core';
+import { useHistory } from 'react-router';
 
 const USERS_PER_PAGE = 10;
+const history = useHistory();
 
 export function UserList() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -37,6 +40,15 @@ export function UserList() {
               ))}
             </ul>
           </div>
+
+          <Fab
+            style={{ marginBottom: '10px', marginLeft: '20px', fontSize: '10px' }}
+            onClick={() => {
+              history.push('./adduser');
+            }}
+          >
+            Novo Usuário
+          </Fab>
 
           <div>
             <Pagination usersPerPage={USERS_PER_PAGE} totalUsers={data.users.count} onPageTap={onPageTap} />

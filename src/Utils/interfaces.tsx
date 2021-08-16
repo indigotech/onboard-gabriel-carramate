@@ -11,7 +11,6 @@ export type FormValues = {
   email: string;
   password: string;
 };
-
 export interface LoginResult {
   login: {
     token: string;
