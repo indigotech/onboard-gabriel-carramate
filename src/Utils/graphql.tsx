@@ -17,8 +17,13 @@ export const LOGIN_MUTATION = gql`
 `;
 
 export const GET_USERS = gql`
-  query users {
-    users(pageInfo: { offset: 0, limit: 1000 }) {
+  query users ($offset: Int!) {
+    users(pageInfo: { offset: $offset }) {
+      count
+      pageInfo {
+        offset
+        limit
+      }
       nodes {
         id
         name
