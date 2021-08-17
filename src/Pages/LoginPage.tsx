@@ -5,6 +5,7 @@ import { useHistory } from 'react-router';
 import { LoginResult, FormValues } from '../Utils/interfaces';
 import { LOGIN_MUTATION } from '../Utils/graphql';
 import { handleEmailValidation, handlePasswordValidation } from '../Validations';
+import { ErrorComponent } from '../Components/ErrorComponent';
 
 export function LoginPage() {
   const history = useHistory();
@@ -47,7 +48,7 @@ export function LoginPage() {
             })}
           />
 
-          {errors.email && <p>{errors.email.message}</p>}
+          <ErrorComponent error={errors.email} />
         </div>
 
         <div>
@@ -68,10 +69,10 @@ export function LoginPage() {
             })}
           />
 
-          {errors.password && <p>{errors.password.message}</p>}
+          <ErrorComponent error={errors.password} />
         </div>
 
-        {error && <p>{error.message}</p>}
+        <ErrorComponent error={error} />
 
         <div>
           <button type='submit' disabled={loading}>

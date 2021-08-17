@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { UserList } from './Pages/UserList';
 import { LoginPage } from './Pages/LoginPage';
+import { AddUser } from './Pages/AddUser';
 
 
 const httpLink = createHttpLink({
@@ -36,6 +37,9 @@ export function App() {
           </Route>
           <Route path='/userslist'>
             <UserList />
+          </Route>
+          <Route path='/adduser'>
+            <AddUser />
           </Route>
         </Switch>
       </Router>
