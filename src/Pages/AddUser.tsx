@@ -1,6 +1,12 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { User } from '../Utils/interfaces';
-import { handleEmailValidation, handleNameValidation, handleDateValidation, handlePhoneValidation } from '../Validations';
+import {
+  handleEmailValidation,
+  handleNameValidation,
+  handleDateValidation,
+  handlePhoneValidation,
+} from '../Validations';
+import { errorStyle } from '../Utils/styles'
 
 export function AddUser() {
   const {
@@ -31,7 +37,7 @@ export function AddUser() {
             })}
           />
 
-          {errors.name && <p>{errors.name.message}</p>}
+          {errors.name && <p style={errorStyle}>{errors.name.message}</p>}
         </div>
 
         <div>
@@ -48,7 +54,7 @@ export function AddUser() {
             })}
           />
 
-          {errors.phone && <p>{errors.phone.message}</p>}
+          {errors.phone && <p style={errorStyle}>{errors.phone.message}</p>}
         </div>
 
         <div>
@@ -65,7 +71,7 @@ export function AddUser() {
             })}
           />
 
-          {errors.birthDate && <p>{errors.birthDate.message}</p>}
+          {errors.birthDate && <p style={errorStyle}>{errors.birthDate.message}</p>}
         </div>
 
         <div>
@@ -82,7 +88,7 @@ export function AddUser() {
             })}
           />
 
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && <p style={errorStyle}>{errors.email.message}</p>}
         </div>
 
         <div>
