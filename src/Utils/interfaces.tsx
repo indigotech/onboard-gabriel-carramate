@@ -1,8 +1,4 @@
 interface User {
-<<<<<<< HEAD
-  user: {
-=======
->>>>>>> 80d39ed... fPagination now uses useMemo() and only current page elements are fetched
     id: string;
     name: string;
     phone: string;
@@ -25,10 +21,6 @@ export interface LoginResult {
 
 export interface UserListResult {
   users: {
-<<<<<<< HEAD
-    nodes: User
-  }
-=======
     nodes: User[];
     count: number;
     pageInfo: {
@@ -36,5 +28,4 @@ export interface UserListResult {
       limit: number;
     }
   };
->>>>>>> 80d39ed... fPagination now uses useMemo() and only current page elements are fetched
 }
