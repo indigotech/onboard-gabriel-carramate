@@ -6,7 +6,7 @@ import {
   handleDateValidation,
   handlePhoneValidation,
 } from '../Validations';
-import { errorStyle } from '../Utils/styles'
+import { ErrorComponent } from '../Components/ErrorComponent';
 
 export function AddUser() {
   const {
@@ -37,7 +37,7 @@ export function AddUser() {
             })}
           />
 
-          {errors.name && <p style={errorStyle}>{errors.name.message}</p>}
+          <ErrorComponent error={errors.name} />
         </div>
 
         <div>
@@ -54,7 +54,7 @@ export function AddUser() {
             })}
           />
 
-          {errors.phone && <p style={errorStyle}>{errors.phone.message}</p>}
+          <ErrorComponent error={errors.phone} />
         </div>
 
         <div>
@@ -71,7 +71,7 @@ export function AddUser() {
             })}
           />
 
-          {errors.birthDate && <p style={errorStyle}>{errors.birthDate.message}</p>}
+          <ErrorComponent error={errors.birthDate} />
         </div>
 
         <div>
@@ -88,7 +88,7 @@ export function AddUser() {
             })}
           />
 
-          {errors.email && <p style={errorStyle}>{errors.email.message}</p>}
+          <ErrorComponent error={errors.email} />
         </div>
 
         <div>
