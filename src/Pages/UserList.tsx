@@ -21,6 +21,10 @@ export function UserList() {
     variables: { offset: offset },
   });
 
+  const onUserTap = (userId: number) => {
+    history.push(`./UserDetails/${userId}`)
+  }
+
   return (
     <div>
       {loading && <p>Carregando...</p>}

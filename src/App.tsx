@@ -6,6 +6,7 @@ import './App.css';
 import { UserList } from './Pages/UserList';
 import { LoginPage } from './Pages/LoginPage';
 import { AddUser } from './Pages/AddUser';
+import { UserDetails } from './Pages/UserDetails';
 
 
 const httpLink = createHttpLink({
@@ -40,6 +41,9 @@ export function App() {
           </Route>
           <Route path='/adduser'>
             <AddUser />
+          </Route>
+          <Route path='/userdetails'>
+            <UserDetails />
           </Route>
         </Switch>
       </Router>
