@@ -34,7 +34,7 @@ export function UserList() {
               {data.users.nodes.map((item) => (
                 <li key={item.id}>
                   <p>
-                    name: {item.name} email: {item.email} date: {item.birthDate}
+                    name: {item.name} email: {item.email}
                   </p>
                 </li>
               ))}
