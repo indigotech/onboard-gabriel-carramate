@@ -1,29 +1,47 @@
 import { useQuery } from '@apollo/client';
-import React from 'react';
+import React, { useState } from 'react';
 import { GET_USERS } from '../Utils/graphql';
+import { Pagination } from '../Components/Pagination';
+import { UserListResult } from '../Utils/interfaces';
+
+const USERS_PER_PAGE = 10;
 
 export function UserList() {
-  const { loading, error, data } = useQuery(GET_USERS);
+  const [currentPage, setCurrentPage] = useState(1);
+  const offset = (currentPage - 1) * USERS_PER_PAGE;
+
+  const onPageTap = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const { data, loading, error } = useQuery<UserListResult>(GET_USERS, {
+    variables: { offset: offset },
+  });
 
   return (
     <div>
       {loading && <p>Carregando...</p>}
       {error && <p>{error.message}</p>}
       {data && (
-        <div>
-          <h3>Lista de usuários</h3>
+        <>
+          <div>
+            <h3>Lista de usuários</h3>
 
-          <ul>
-            {data.users.nodes.map((item: any) => (
-              <li key={item.id}>
-                <p>
-                  name: {item.name} email: {item.email}
-                </p>
-              </li>
-            ))}
-          </ul>
-          
-        </div>
+            <ul>
+              {data.users.nodes.map((item) => (
+                <li key={item.id}>
+                  <p>
+                    name: {item.name} email: {item.email}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <Pagination usersPerPage={USERS_PER_PAGE} totalUsers={data.users.count} onPageTap={onPageTap} />
+          </div>
+        </>
       )}
     </div>
   );
