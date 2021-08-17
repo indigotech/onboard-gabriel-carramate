@@ -17,7 +17,7 @@ function validateDate(date: string): boolean {
 function validateYear(date: string): boolean {
   const birthYear = parseInt(date.slice(date.length - 4),10);
 
-  if (birthYear <= 2005) {
+  if (birthYear >= 1900 && birthYear <= 2005) {
     return true
   } else {
     return false
@@ -67,7 +67,7 @@ export const handleDateValidation = (date: string) => {
   }
 
   if(!validateYear(date)) {
-    return 'O ano de nascimento não pode ser posterior a 2005.'
+    return 'O ano de nascimento precisa estar entre 1900 e 2005.'
   }
 }
 

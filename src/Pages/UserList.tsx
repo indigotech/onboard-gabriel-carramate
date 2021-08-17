@@ -10,7 +10,6 @@ const USERS_PER_PAGE = 10;
 
 export function UserList() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalUsers, setTotalUsers] = useState(0);
   const history = useHistory();
   const offset = (currentPage - 1) * USERS_PER_PAGE;
 
