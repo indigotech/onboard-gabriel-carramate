@@ -8,8 +8,7 @@ const USERS_PER_PAGE = 10;
 
 export function UserList() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalUsers, setTotalUsers] = useState(0);
-  const offset = (currentPage - 1) * 10;
+  const offset = (currentPage - 1) * USERS_PER_PAGE;
 
   const onPageTap = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -17,9 +16,6 @@ export function UserList() {
 
   const { data, loading, error } = useQuery<UserListResult>(GET_USERS, {
     variables: { offset: offset },
-    onCompleted(data) {
-      setTotalUsers(data.users.count);
-    },
   });
 
   return (
@@ -43,7 +39,7 @@ export function UserList() {
           </div>
 
           <div>
-            <Pagination usersPerPage={USERS_PER_PAGE} totalUsers={totalUsers} onPageTap={onPageTap} />
+            <Pagination usersPerPage={USERS_PER_PAGE} totalUsers={data.users.count} onPageTap={onPageTap} />
           </div>
         </>
       )}

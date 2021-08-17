@@ -17,7 +17,7 @@ export const LOGIN_MUTATION = gql`
 `;
 
 export const GET_USERS = gql`
-  query users ($offset: Int!) {
+  query users($offset: Int!) {
     users(pageInfo: { offset: $offset }) {
       count
       pageInfo {
