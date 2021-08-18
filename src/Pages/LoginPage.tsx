@@ -46,6 +46,7 @@ export function LoginPage() {
               },
               validate: handleEmailValidation,
             })}
+            disabled= {loading}
           />
 
           <ErrorComponent error={errors.email} />
@@ -67,6 +68,7 @@ export function LoginPage() {
               },
               validate: handlePasswordValidation,
             })}
+            disabled= {loading}
           />
 
           <ErrorComponent error={errors.password} />

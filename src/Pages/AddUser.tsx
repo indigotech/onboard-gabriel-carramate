@@ -37,7 +37,6 @@ export function AddUser() {
 
   return (
     <div>
-      {loading && <p>Carregando...</p>}
       <div className='App'>
         <h2>Novo Usuário</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -53,6 +52,7 @@ export function AddUser() {
                 },
                 validate: handleNameValidation,
               })}
+              disabled={loading}
             />
 
             <ErrorComponent error={errors.name} />
@@ -70,6 +70,7 @@ export function AddUser() {
                 },
                 validate: handlePhoneValidation,
               })}
+              disabled={loading}
             />
 
             <ErrorComponent error={errors.phone} />
@@ -87,6 +88,7 @@ export function AddUser() {
                 },
                 validate: handleDateValidation,
               })}
+              disabled={loading}
             />
 
             <ErrorComponent error={errors.birthDate} />
@@ -104,6 +106,7 @@ export function AddUser() {
                 },
                 validate: handleEmailValidation,
               })}
+              disabled={loading}
             />
 
             <ErrorComponent error={errors.email} />
@@ -112,8 +115,8 @@ export function AddUser() {
           <ErrorComponent error={error} />
 
           <div>
-            <button type='submit' disabled={false}>
-              Adicionar Usuário
+            <button type='submit' disabled={loading}>
+              {loading ? 'Carregando...' : 'Adicionar Usuário'}
             </button>
           </div>
         </form>
