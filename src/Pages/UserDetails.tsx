@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import { ErrorComponent } from '../Components/ErrorComponent';
 import { USER_DETAILS } from '../Utils/graphql';
 import { UserDetailParams } from '../Utils/interfaces';
+import { H1 } from '../Utils/styles';
 
 export function UserDetails() {
   const params: UserDetailParams = useParams();
@@ -18,7 +19,7 @@ export function UserDetails() {
 
       {data && (
         <div>
-          <h3>{data.user.name}</h3>
+          <H1>{data.user.name}</H1>
           <p>Id: {data.user.id}</p>
           <p>Email: {data.user.email}</p>
           <p>Telefone: {data.user.phone}</p>

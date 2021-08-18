@@ -6,6 +6,8 @@ import { LoginResult, FormValues } from '../Utils/interfaces';
 import { LOGIN_MUTATION } from '../Utils/graphql';
 import { handleEmailValidation, handlePasswordValidation } from '../Validations';
 import { ErrorComponent } from '../Components/ErrorComponent';
+import { H1 } from '../Utils/styles';
+import { ButtonComponent } from '../Components/ButtonComponent';
 
 export function LoginPage() {
   const history = useHistory();
@@ -32,7 +34,7 @@ export function LoginPage() {
 
   return (
     <div className='App'>
-      <h1>Bem-vindo(a) à Taqtile!</h1>
+      <H1>Bem-vindo(a) à Taqtile!</H1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label>Email:</label>
@@ -46,7 +48,7 @@ export function LoginPage() {
               },
               validate: handleEmailValidation,
             })}
-            disabled= {loading}
+            disabled={loading}
           />
 
           <ErrorComponent error={errors.email} />
@@ -68,7 +70,7 @@ export function LoginPage() {
               },
               validate: handlePasswordValidation,
             })}
-            disabled= {loading}
+            disabled={loading}
           />
 
           <ErrorComponent error={errors.password} />
@@ -77,9 +79,7 @@ export function LoginPage() {
         <ErrorComponent error={error} />
 
         <div>
-          <button type='submit' disabled={loading}>
-            {loading ? 'Carregando...' : 'Entrar'}
-          </button>
+          <ButtonComponent loading={loading} name={'Entrar'} />
         </div>
       </form>
     </div>

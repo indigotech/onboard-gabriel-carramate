@@ -10,6 +10,8 @@ import { ErrorComponent } from '../Components/ErrorComponent';
 import { ADD_USER } from '../Utils/graphql';
 import { useHistory } from 'react-router';
 import { useMutation } from '@apollo/client';
+import { H1 } from '../Utils/styles';
+import { ButtonComponent } from '../Components/ButtonComponent';
 
 export function AddUser() {
   const {
@@ -38,7 +40,7 @@ export function AddUser() {
   return (
     <div>
       <div className='App'>
-        <h2>Novo Usuário</h2>
+        <H1>Novo Usuário</H1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label>Nome:</label>
@@ -115,9 +117,7 @@ export function AddUser() {
           <ErrorComponent error={error} />
 
           <div>
-            <button type='submit' disabled={loading}>
-              {loading ? 'Carregando...' : 'Adicionar Usuário'}
-            </button>
+            <ButtonComponent loading={loading} name={'Adicionar Usuário'} />
           </div>
         </form>
       </div>

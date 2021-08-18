@@ -6,6 +6,7 @@ import { UserListResult } from '../Utils/interfaces';
 import { Fab } from '@material-ui/core';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
+import { H1 } from '../Utils/styles';
 
 const USERS_PER_PAGE = 10;
 
@@ -29,7 +30,7 @@ export function UserList() {
       {data && (
         <>
           <div>
-            <h3>Lista de usuários</h3>
+            <H1>Lista de usuários</H1>
 
             <ul>
               {data.users.nodes.map((item) => (
