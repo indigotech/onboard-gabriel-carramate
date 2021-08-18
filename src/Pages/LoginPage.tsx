@@ -6,7 +6,7 @@ import { LoginResult, FormValues } from '../Utils/interfaces';
 import { LOGIN_MUTATION } from '../Utils/graphql';
 import { handleEmailValidation, handlePasswordValidation } from '../Validations';
 import { ErrorComponent } from '../Components/ErrorComponent';
-import { H1 } from '../Utils/styles';
+import { FormLabel, H1, Input } from '../Utils/styles';
 import { ButtonComponent } from '../Components/ButtonComponent';
 
 export function LoginPage() {
@@ -37,9 +37,11 @@ export function LoginPage() {
       <H1>Bem-vindo(a) à Taqtile!</H1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label>Email:</label>
+          <FormLabel>Email:</FormLabel>
+        </div>
 
-          <input
+        <div>
+          <Input
             type='email'
             {...register('email', {
               required: {
@@ -55,9 +57,11 @@ export function LoginPage() {
         </div>
 
         <div>
-          <label>Senha:</label>
-
-          <input
+          <FormLabel>Senha:</FormLabel>
+        </div>
+        
+        <div>
+          <Input
             type='password'
             {...register('password', {
               required: {

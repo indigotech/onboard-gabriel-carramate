@@ -10,7 +10,7 @@ import { ErrorComponent } from '../Components/ErrorComponent';
 import { ADD_USER } from '../Utils/graphql';
 import { useHistory } from 'react-router';
 import { useMutation } from '@apollo/client';
-import { H1 } from '../Utils/styles';
+import { FormLabel, H1, Input } from '../Utils/styles';
 import { ButtonComponent } from '../Components/ButtonComponent';
 
 export function AddUser() {
@@ -43,9 +43,11 @@ export function AddUser() {
         <H1>Novo Usuário</H1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
-            <label>Nome:</label>
+            <FormLabel>Nome:</FormLabel>
+          </div>
 
-            <input
+          <div>
+            <Input
               type='name'
               {...register('name', {
                 required: {
@@ -61,9 +63,11 @@ export function AddUser() {
           </div>
 
           <div>
-            <label>Telefone:</label>
+            <FormLabel>Telefone:</FormLabel>
+          </div>
 
-            <input
+          <div>
+            <Input
               type='phone'
               {...register('phone', {
                 required: {
@@ -79,9 +83,11 @@ export function AddUser() {
           </div>
 
           <div>
-            <label>Data de nascimento:</label>
+            <FormLabel>Data de nascimento:</FormLabel>
+          </div>
 
-            <input
+          <div>
+            <Input
               type='birthDate'
               {...register('birthDate', {
                 required: {
@@ -97,9 +103,11 @@ export function AddUser() {
           </div>
 
           <div>
-            <label>Email:</label>
+            <FormLabel>Email:</FormLabel>
+          </div>
 
-            <input
+          <div>
+            <Input
               type='email'
               {...register('email', {
                 required: {
