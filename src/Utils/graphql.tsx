@@ -48,3 +48,16 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const USER_DETAILS = gql`
+  query user($id: ID!) {
+    user(id: $id) {
+      id
+      name
+      phone
+      birthDate
+      email
+      role
+    }
+  }
+`;

@@ -5,6 +5,7 @@ import { Pagination } from '../Components/Pagination';
 import { UserListResult } from '../Utils/interfaces';
 import { Fab } from '@material-ui/core';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const USERS_PER_PAGE = 10;
 
@@ -21,10 +22,6 @@ export function UserList() {
     variables: { offset: offset },
   });
 
-  const onUserTap = (userId: number) => {
-    history.push(`./UserDetails/${userId}`)
-  }
-
   return (
     <div>
       {loading && <p>Carregando...</p>}
@@ -38,7 +35,7 @@ export function UserList() {
               {data.users.nodes.map((item) => (
                 <li key={item.id}>
                   <p>
-                    name: {item.name} email: {item.email} date: {item.birthDate}
+                    name: <Link to={'/userdetails/' + item.id}>{item.name}</Link> email: {' ' + item.email}
                   </p>
                 </li>
               ))}
