@@ -35,3 +35,16 @@ export const GET_USERS = gql`
     }
   }
 `;
+
+export const ADD_USER = gql`
+  mutation createUser($name: String!, $email: String!, $phone: String!, $birthDate: Date!) {
+    createUser(data: { name: $name, email: $email, phone: $phone, birthDate: $birthDate, role: user }) {
+      id
+      name
+      phone
+      birthDate
+      email
+      role
+    }
+  }
+`;
