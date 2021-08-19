@@ -6,7 +6,7 @@ import { UserListResult } from '../Utils/interfaces';
 import { Fab } from '@material-ui/core';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-import { H1 } from '../Utils/styles';
+import { H1, List } from '../Utils/styles';
 
 const USERS_PER_PAGE = 10;
 
@@ -35,16 +35,16 @@ export function UserList() {
             <ul>
               {data.users.nodes.map((item) => (
                 <li key={item.id}>
-                  <p>
-                    name: <Link to={'/userdetails/' + item.id}>{item.name}</Link> email: {' ' + item.email}
-                  </p>
+                  <List>
+                    name: <Link to={'/userdetails/' + item.id} style={{textDecoration: 'none'}}>{item.name}</Link> email: {' ' + item.email}
+                  </List>
                 </li>
               ))}
             </ul>
           </div>
 
           <Fab
-            style={{ marginBottom: '10px', marginLeft: '20px', fontSize: '10px' }}
+            style={{ marginBottom: '10px', marginLeft: '20px', fontSize: '10px', backgroundColor: 'indigo', color: 'white' }}
             onClick={() => {
               history.push('./adduser');
             }}

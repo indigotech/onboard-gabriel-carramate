@@ -30,18 +30,42 @@ export const Error = styled.p`
   margin-top: 8px;
 `;
 
-export const FormLabel = styled.label`
+function getInputColor(props: any) {
+  if (props.disabled) {
+      return '#777777';
+  }
+
+  if (props.error) {
+      return 'red';
+  }
+
+  return '#000000';
+}
+
+interface InputProps {
+  error: boolean;
+  disabled: boolean;
+}
+
+export const FormLabel = styled.label<InputProps>`
   font-family: Helvetica;
   font-size: 12px;
   font weight: regular;
-  color: #777777;
+  color: ${props => getInputColor(props)};
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<InputProps>`
   background-color: white;
   border: 1px solid;
   border-radius: 4px;
   margin-top: 4px;
   margin-bottom: 8px;
   height: 16px;
+  color: ${props => getInputColor(props)};
 `;
+
+export const List = styled.p`
+  font-family: helvetica;
+  color: ;
+  font-size: 14px;
+`

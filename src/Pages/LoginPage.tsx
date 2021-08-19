@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
 import { useHistory } from 'react-router';
@@ -37,7 +37,7 @@ export function LoginPage() {
       <H1>Bem-vindo(a) à Taqtile!</H1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <FormLabel>Email:</FormLabel>
+          <FormLabel error={errors.email || error} disabled={loading}>Email:</FormLabel>
         </div>
 
         <div>
@@ -48,18 +48,19 @@ export function LoginPage() {
                 value: true,
                 message: 'Por favor, preencha o campo do email',
               },
-              validate: handleEmailValidation,
+              validate: {handleEmailValidation},
             })}
             disabled={loading}
+            error={errors.email || error}
           />
 
           <ErrorComponent error={errors.email} />
         </div>
 
         <div>
-          <FormLabel>Senha:</FormLabel>
+          <FormLabel error={errors.password || error} disabled={loading}>Senha:</FormLabel>
         </div>
-        
+
         <div>
           <Input
             type='password'
@@ -75,6 +76,7 @@ export function LoginPage() {
               validate: handlePasswordValidation,
             })}
             disabled={loading}
+            error={errors.password || error}
           />
 
           <ErrorComponent error={errors.password} />

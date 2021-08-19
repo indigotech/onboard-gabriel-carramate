@@ -43,7 +43,7 @@ export function AddUser() {
         <H1>Novo Usuário</H1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
-            <FormLabel>Nome:</FormLabel>
+            <FormLabel error={errors.name || error} disabled={loading}>Nome:</FormLabel>
           </div>
 
           <div>
@@ -57,13 +57,13 @@ export function AddUser() {
                 validate: handleNameValidation,
               })}
               disabled={loading}
+              error={errors.name}
             />
-
             <ErrorComponent error={errors.name} />
           </div>
 
           <div>
-            <FormLabel>Telefone:</FormLabel>
+            <FormLabel error={errors.phone || error} disabled={loading}>Telefone:</FormLabel>
           </div>
 
           <div>
@@ -77,13 +77,14 @@ export function AddUser() {
                 validate: handlePhoneValidation,
               })}
               disabled={loading}
+              error={errors.phone}
             />
 
             <ErrorComponent error={errors.phone} />
           </div>
 
           <div>
-            <FormLabel>Data de nascimento:</FormLabel>
+            <FormLabel error={errors.birthDate || error} disabled={loading}>Data de nascimento:</FormLabel>
           </div>
 
           <div>
@@ -97,13 +98,14 @@ export function AddUser() {
                 validate: handleDateValidation,
               })}
               disabled={loading}
+              error={errors.birthDate}
             />
 
             <ErrorComponent error={errors.birthDate} />
           </div>
 
           <div>
-            <FormLabel>Email:</FormLabel>
+            <FormLabel error={errors.email || error} disabled={loading}>Email:</FormLabel>
           </div>
 
           <div>
@@ -117,6 +119,7 @@ export function AddUser() {
                 validate: handleEmailValidation,
               })}
               disabled={loading}
+              error={errors.email}
             />
 
             <ErrorComponent error={errors.email} />
