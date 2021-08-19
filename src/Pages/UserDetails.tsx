@@ -1,11 +1,15 @@
 import { useQuery } from '@apollo/client';
+import { useParams } from 'react-router';
 import { ErrorComponent } from '../Components/ErrorComponent';
 import { USER_DETAILS } from '../Utils/graphql';
+import { UserDetailParams } from '../Utils/interfaces';
 
 export function UserDetails() {
+  const params: UserDetailParams = useParams();
+
   const { data, loading, error } = useQuery(USER_DETAILS, {
-    variables: { id: window.location.pathname.slice(13) },
-  });
+    variables: { id: params.id },
+  }); 
 
   return (
     <>

@@ -8,7 +8,6 @@ import { LoginPage } from './Pages/LoginPage';
 import { AddUser } from './Pages/AddUser';
 import { UserDetails } from './Pages/UserDetails';
 
-
 const httpLink = createHttpLink({
   uri: 'https://tq-template-server-sample.herokuapp.com/graphql',
 });
@@ -42,9 +41,7 @@ export function App() {
           <Route path='/adduser'>
             <AddUser />
           </Route>
-          <Route path='/userdetails'>
-            <UserDetails />
-          </Route>
+          <Route path='/userdetails/:id' children={<UserDetails />} />
         </Switch>
       </Router>
     </ApolloProvider>
