@@ -3,12 +3,11 @@ import React, { useState } from 'react';
 import { GET_USERS } from '../Utils/graphql';
 import { Pagination } from '../Components/Pagination';
 import { UserListResult } from '../Utils/interfaces';
-import { Fab } from '@material-ui/core';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-import { H1, ListItem } from '../Utils/styles';
+import { CleanList, ListItem, UserListButton, LeftMarginH1, Bold } from '../Utils/styles';
 
-const USERS_PER_PAGE = 10;
+const USERS_PER_PAGE = 6;
 
 export function UserList() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,7 +19,7 @@ export function UserList() {
   };
 
   const { data, loading, error } = useQuery<UserListResult>(GET_USERS, {
-    variables: { offset: offset },
+    variables: { offset: offset, limit: USERS_PER_PAGE },
   });
 
   return (
@@ -30,27 +29,32 @@ export function UserList() {
       {data && (
         <>
           <div>
-            <H1>Lista de usuários</H1>
+            <LeftMarginH1>Lista de usuários</LeftMarginH1>
 
             <ul>
               {data.users.nodes.map((item) => (
-                <li key={item.id}>
+                <CleanList key={item.id}>
                   <ListItem>
-                    Nome: <Link to={'/userdetails/' + item.id} style={{textDecoration: 'none'}}>{item.name}</Link> Email: {' ' + item.email}
+                    <Bold> Nome: </Bold>{' '}
+                    <Link to={'/userdetails/' + item.id} style={{ textDecoration: 'none' }}>
+                      {item.name}
+                    </Link>
                   </ListItem>
-                </li>
+                  <ListItem>
+                    <Bold> Email: </Bold> {' ' + item.email}
+                  </ListItem>
+                </CleanList>
               ))}
             </ul>
           </div>
 
-          <Fab
-            style={{ marginBottom: '10px', marginLeft: '20px', fontSize: '10px', backgroundColor: 'indigo', color: 'white' }}
+          <UserListButton
             onClick={() => {
               history.push('./adduser');
             }}
           >
             Novo Usuário
-          </Fab>
+          </UserListButton>
 
           <div>
             <Pagination usersPerPage={USERS_PER_PAGE} totalUsers={data.users.count} onPageTap={onPageTap} />

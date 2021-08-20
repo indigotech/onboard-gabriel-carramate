@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { PageButton } from '../Utils/styles';
 
 export function Pagination({
   usersPerPage,
@@ -24,13 +25,13 @@ export function Pagination({
       <ul>
         {pageNumbers.map((number) => (
           <li key={number} style={{ display: 'inline-block' }}>
-            <button
+            <PageButton
               onClick={() => {
                 onPageTap(number);
               }}
             >
               {number}
-            </button>
+            </PageButton>
           </li>
         ))}
       </ul>

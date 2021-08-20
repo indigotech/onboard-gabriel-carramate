@@ -37,7 +37,9 @@ export function LoginPage() {
       <H1>Bem-vindo(a) à Taqtile!</H1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <FormLabel error={errors.email || error} disabled={loading}>Email:</FormLabel>
+          <FormLabel error={errors.email || error} disabled={loading}>
+            Email:
+          </FormLabel>
         </div>
 
         <div>
@@ -48,7 +50,7 @@ export function LoginPage() {
                 value: true,
                 message: 'Por favor, preencha o campo do email',
               },
-              validate: {handleEmailValidation},
+              validate: { handleEmailValidation },
             })}
             disabled={loading}
             error={errors.email || error}
@@ -58,7 +60,9 @@ export function LoginPage() {
         </div>
 
         <div>
-          <FormLabel error={errors.password || error} disabled={loading}>Senha:</FormLabel>
+          <FormLabel error={errors.password || error} disabled={loading}>
+            Senha:
+          </FormLabel>
         </div>
 
         <div>
