@@ -28,3 +28,7 @@ export interface UserListResult {
     }
   };
 }
+
+export interface UserDetailParams {
+  id: string;
+}
