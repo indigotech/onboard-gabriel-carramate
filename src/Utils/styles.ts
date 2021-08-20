@@ -100,7 +100,11 @@ export const CleanList = styled.li`
   font-family: helvetica;
   position: relative;
   list-style-type: none;
-  left: 2px;
+  left: 2px;  
   border-bottom: 1px solid;
   border-color: #32127a;
 `;
+
+export const Page = styled.div`
+  padding-right: 42px;
+`
