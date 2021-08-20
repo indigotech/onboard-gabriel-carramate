@@ -42,9 +42,8 @@ export function AddUser() {
       <div className='App'>
         <H1>Novo Usuário</H1>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
+
             <FormLabel error={errors.name || error} disabled={loading}>Nome:</FormLabel>
-          </div>
 
           <div>
             <Input
@@ -62,9 +61,7 @@ export function AddUser() {
             <ErrorComponent error={errors.name} />
           </div>
 
-          <div>
             <FormLabel error={errors.phone || error} disabled={loading}>Telefone:</FormLabel>
-          </div>
 
           <div>
             <Input
@@ -79,13 +76,10 @@ export function AddUser() {
               disabled={loading}
               error={errors.phone}
             />
-
             <ErrorComponent error={errors.phone} />
           </div>
 
-          <div>
             <FormLabel error={errors.birthDate || error} disabled={loading}>Data de nascimento:</FormLabel>
-          </div>
 
           <div>
             <Input
@@ -100,7 +94,6 @@ export function AddUser() {
               disabled={loading}
               error={errors.birthDate}
             />
-
             <ErrorComponent error={errors.birthDate} />
           </div>
 
@@ -121,14 +114,13 @@ export function AddUser() {
               disabled={loading}
               error={errors.email}
             />
-
             <ErrorComponent error={errors.email} />
           </div>
 
           <ErrorComponent error={error} />
 
           <div>
-            <ButtonComponent loading={loading} name={'Adicionar Usuário'} />
+            <ButtonComponent loading={loading} title={'Adicionar Usuário'} />
           </div>
         </form>
       </div>

@@ -85,7 +85,7 @@ export function LoginPage() {
         <ErrorComponent error={error} />
 
         <div>
-          <ButtonComponent loading={loading} name={'Entrar'} />
+          <ButtonComponent loading={loading} title={'Entrar'} />
         </div>
       </form>
     </div>

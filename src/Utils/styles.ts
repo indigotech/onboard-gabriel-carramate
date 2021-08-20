@@ -64,7 +64,7 @@ export const Input = styled.input<InputProps>`
   color: ${props => getInputColor(props)};
 `;
 
-export const List = styled.p`
+export const ListItem = styled.p`
   font-family: helvetica;
   color: ;
   font-size: 14px;

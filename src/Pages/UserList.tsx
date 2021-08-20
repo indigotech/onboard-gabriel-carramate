@@ -6,7 +6,7 @@ import { UserListResult } from '../Utils/interfaces';
 import { Fab } from '@material-ui/core';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-import { H1, List } from '../Utils/styles';
+import { H1, ListItem } from '../Utils/styles';
 
 const USERS_PER_PAGE = 10;
 
@@ -35,9 +35,9 @@ export function UserList() {
             <ul>
               {data.users.nodes.map((item) => (
                 <li key={item.id}>
-                  <List>
-                    name: <Link to={'/userdetails/' + item.id} style={{textDecoration: 'none'}}>{item.name}</Link> email: {' ' + item.email}
-                  </List>
+                  <ListItem>
+                    Nome: <Link to={'/userdetails/' + item.id} style={{textDecoration: 'none'}}>{item.name}</Link> Email: {' ' + item.email}
+                  </ListItem>
                 </li>
               ))}
             </ul>

@@ -1,11 +1,9 @@
 import { Button } from '../Utils/styles';
 
-export function ButtonComponent({ loading, name }: { loading: boolean; name: string }) {
+export function ButtonComponent({ loading, title }: { loading: boolean; title: string }) {
   return (
-    <>
       <Button type='submit' disabled={loading}>
-        {loading ? 'Carregando...' : name }
+        {loading ? 'Carregando...' : title }
       </Button>
-    </>
   );
 }
