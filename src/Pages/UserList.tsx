@@ -39,8 +39,8 @@ export function UserList() {
                     <Link to={'/userdetails/' + item.id} style={{ textDecoration: 'none' }}>
                       {item.name}
                     </Link>
-                    </ListItem>
-                    <ListItem>
+                  </ListItem>
+                  <ListItem>
                     <Bold> Email: </Bold> {' ' + item.email}
                   </ListItem>
                 </CleanList>
