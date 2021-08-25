@@ -1,11 +1,11 @@
 export interface User {
-    id: string;
-    name: string;
-    phone: string;
-    birthDate: string;
-    email: string;
-    role: string;
-  }
+  id: string;
+  name: string;
+  phone: string;
+  birthDate: string;
+  email: string;
+  role: string;
+}
 
 export type FormValues = {
   email: string;
@@ -25,10 +25,15 @@ export interface UserListResult {
     pageInfo: {
       offset: number;
       limit: number;
-    }
+    };
   };
 }
 
 export interface UserDetailParams {
   id: string;
+}
+
+export interface InputProps {
+  error: boolean;
+  disabled: boolean;
 }

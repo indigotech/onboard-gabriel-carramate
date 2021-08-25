@@ -10,6 +10,8 @@ import { ErrorComponent } from '../Components/ErrorComponent';
 import { ADD_USER } from '../Utils/graphql';
 import { useHistory } from 'react-router';
 import { useMutation } from '@apollo/client';
+import { FormLabel, H1, Input } from '../Utils/styles';
+import { ButtonComponent } from '../Components/ButtonComponent';
 
 export function AddUser() {
   const {
@@ -38,12 +40,14 @@ export function AddUser() {
   return (
     <div>
       <div className='App'>
-        <h2>Novo Usuário</h2>
+        <H1>Novo Usuário</H1>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <label>Nome:</label>
+          <FormLabel error={errors.name || error} disabled={loading}>
+            Nome:
+          </FormLabel>
 
-            <input
+          <div>
+            <Input
               type='name'
               {...register('name', {
                 required: {
@@ -53,15 +57,17 @@ export function AddUser() {
                 validate: handleNameValidation,
               })}
               disabled={loading}
+              error={errors.name}
             />
-
             <ErrorComponent error={errors.name} />
           </div>
 
-          <div>
-            <label>Telefone:</label>
+          <FormLabel error={errors.phone || error} disabled={loading}>
+            Telefone:
+          </FormLabel>
 
-            <input
+          <div>
+            <Input
               type='phone'
               {...register('phone', {
                 required: {
@@ -71,15 +77,17 @@ export function AddUser() {
                 validate: handlePhoneValidation,
               })}
               disabled={loading}
+              error={errors.phone}
             />
-
             <ErrorComponent error={errors.phone} />
           </div>
 
-          <div>
-            <label>Data de nascimento:</label>
+          <FormLabel error={errors.birthDate || error} disabled={loading}>
+            Data de nascimento:
+          </FormLabel>
 
-            <input
+          <div>
+            <Input
               type='birthDate'
               {...register('birthDate', {
                 required: {
@@ -89,15 +97,19 @@ export function AddUser() {
                 validate: handleDateValidation,
               })}
               disabled={loading}
+              error={errors.birthDate}
             />
-
             <ErrorComponent error={errors.birthDate} />
           </div>
 
           <div>
-            <label>Email:</label>
+            <FormLabel error={errors.email || error} disabled={loading}>
+              Email:
+            </FormLabel>
+          </div>
 
-            <input
+          <div>
+            <Input
               type='email'
               {...register('email', {
                 required: {
@@ -107,17 +119,15 @@ export function AddUser() {
                 validate: handleEmailValidation,
               })}
               disabled={loading}
+              error={errors.email}
             />
-
             <ErrorComponent error={errors.email} />
           </div>
 
           <ErrorComponent error={error} />
 
           <div>
-            <button type='submit' disabled={loading}>
-              {loading ? 'Carregando...' : 'Adicionar Usuário'}
-            </button>
+            <ButtonComponent loading={loading} title={'Adicionar Usuário'} />
           </div>
         </form>
       </div>

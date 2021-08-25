@@ -6,6 +6,8 @@ import { LoginResult, FormValues } from '../Utils/interfaces';
 import { LOGIN_MUTATION } from '../Utils/graphql';
 import { handleEmailValidation, handlePasswordValidation } from '../Validations';
 import { ErrorComponent } from '../Components/ErrorComponent';
+import { FormLabel, H1, Input } from '../Utils/styles';
+import { ButtonComponent } from '../Components/ButtonComponent';
 
 export function LoginPage() {
   const history = useHistory();
@@ -32,30 +34,39 @@ export function LoginPage() {
 
   return (
     <div className='App'>
-      <h1>Bem-vindo(a) à Taqtile!</h1>
+      <H1>Bem-vindo(a) à Taqtile!</H1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label>Email:</label>
+          <FormLabel error={errors.email || error} disabled={loading}>
+            Email:
+          </FormLabel>
+        </div>
 
-          <input
+        <div>
+          <Input
             type='email'
             {...register('email', {
               required: {
                 value: true,
                 message: 'Por favor, preencha o campo do email',
               },
-              validate: handleEmailValidation,
+              validate: { handleEmailValidation },
             })}
-            disabled= {loading}
+            disabled={loading}
+            error={errors.email || error}
           />
 
           <ErrorComponent error={errors.email} />
         </div>
 
         <div>
-          <label>Senha:</label>
+          <FormLabel error={errors.password || error} disabled={loading}>
+            Senha:
+          </FormLabel>
+        </div>
 
-          <input
+        <div>
+          <Input
             type='password'
             {...register('password', {
               required: {
@@ -68,7 +79,8 @@ export function LoginPage() {
               },
               validate: handlePasswordValidation,
             })}
-            disabled= {loading}
+            disabled={loading}
+            error={errors.password || error}
           />
 
           <ErrorComponent error={errors.password} />
@@ -77,9 +89,7 @@ export function LoginPage() {
         <ErrorComponent error={error} />
 
         <div>
-          <button type='submit' disabled={loading}>
-            {loading ? 'Carregando...' : 'Entrar'}
-          </button>
+          <ButtonComponent loading={loading} title={'Entrar'} />
         </div>
       </form>
     </div>

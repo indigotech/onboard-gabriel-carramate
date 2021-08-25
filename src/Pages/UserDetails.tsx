@@ -3,13 +3,14 @@ import { useParams } from 'react-router';
 import { ErrorComponent } from '../Components/ErrorComponent';
 import { USER_DETAILS } from '../Utils/graphql';
 import { UserDetailParams } from '../Utils/interfaces';
+import { Bold, LeftMarginH1, LeftMarginP } from '../Utils/styles';
 
 export function UserDetails() {
   const params: UserDetailParams = useParams();
 
   const { data, loading, error } = useQuery(USER_DETAILS, {
     variables: { id: params.id },
-  }); 
+  });
 
   return (
     <>
@@ -18,12 +19,22 @@ export function UserDetails() {
 
       {data && (
         <div>
-          <h3>{data.user.name}</h3>
-          <p>Id: {data.user.id}</p>
-          <p>Email: {data.user.email}</p>
-          <p>Telefone: {data.user.phone}</p>
-          <p>Data de nascimento: {data.user.birthDate}</p>
-          <p>Função: {data.user.role}</p>
+          <LeftMarginH1>{data.user.name}</LeftMarginH1>
+          <LeftMarginP>
+            <Bold>Id:</Bold> {data.user.id}
+          </LeftMarginP>
+          <LeftMarginP>
+            <Bold>Email:</Bold> {data.user.email}
+          </LeftMarginP>
+          <LeftMarginP>
+            <Bold>Telefone:</Bold> {data.user.phone}
+          </LeftMarginP>
+          <LeftMarginP>
+            <Bold>Data de nascimento:</Bold> {data.user.birthDate}
+          </LeftMarginP>
+          <LeftMarginP>
+            <Bold>Função:</Bold> {data.user.role}
+          </LeftMarginP>
         </div>
       )}
     </>
